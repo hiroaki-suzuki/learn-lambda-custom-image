@@ -1,7 +1,9 @@
 import json
+import subprocess
+from typing import Any
 
 
-def lambda_handler(event, context):
+def handler(event: Any, context: Any) -> dict:
     """Sample pure Lambda function
 
     Parameters
@@ -22,6 +24,10 @@ def lambda_handler(event, context):
 
         Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
+
+    print("=================================================")
+    subprocess.run(["convert", "--version"])
+    print("=================================================")
 
     return {
         "statusCode": 200,

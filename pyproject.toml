@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["Hiroaki Suzuki <rirazou05410@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mypy = "^1.9.0"
+flake8 = "^7.0.0"
+black = "^24.3.0"
+isort = "^5.13.2"
+pep8-naming = "^0.13.3"
+pytest = "^8.1.1"
+pytest-mock = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+pretty = true
+show_column_numbers = true
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"

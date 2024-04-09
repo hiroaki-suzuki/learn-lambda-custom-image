@@ -1,13 +1,13 @@
 import json
+from typing import Any, Dict
 
 import pytest
-
-from hello_world import app
+from image_magick import app
 
 
 @pytest.fixture()
-def apigw_event():
-    """ Generates API GW Event"""
+def apigw_event() -> Dict[str, Any]:
+    """Generates API GW Event"""
 
     return {
         "body": '{ "test": "body"}',
@@ -62,9 +62,12 @@ def apigw_event():
     }
 
 
-def test_lambda_handler(apigw_event, mocker):
+def test_handler(apigw_event: Any, mocker: Any) -> None:
 
-    ret = app.lambda_handler(apigw_event, "")
+    # ImageMagickはローカルでは動作しないため、subprocess.runをモックする
+    mocker.patch("subprocess.run", return_value=None)
+
+    ret = app.handler(apigw_event, "")
     data = json.loads(ret["body"])
 
     assert ret["statusCode"] == 200
